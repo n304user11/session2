@@ -29,6 +29,11 @@
 
 	</div><!-- /content -->
 
+<label for="text-2">Add a new quote:</label>
+ <input type="submit" value="Submit Button" id="button2" />
+
+
+
 	<div data-role="footer">
     	<h4>Page Footer</h4>
 	</div><!-- /footer -->
@@ -55,6 +60,17 @@ $(document).bind('pageinit', function() {
   });
 
 });
+
+
+  $( "#button2" ).bind( "click", function(event, ui) {
+	alert("Posting a new quote");
+	var jsonUrl = "http://localhost:3001/quote";
+	var newQuote = { "author" : "foo", "text" : "some text" };
+	$.post(jsonUrl,newQuote, function(data) {
+  	alert("Added " + data.author + " " + data.text);
+	}, 'json');
+  });
+
 </script>
 </body>
 </html>
